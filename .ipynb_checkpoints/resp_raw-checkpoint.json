@@ -1,0 +1,1 @@
+{"id":"resp-d55b57e2-aae0-449b-9b43-e4d0a9630657","object":"response","created":1761893148,"model":"deepseek-ocr","output":[{"id":"msg-d6f830f2-8307-43af-b91a-c95e4378ab4d","type":"message","role":"assistant","content":[{"type":"output_text","text":"No response generated."}]}],"usage":{"prompt_tokens":23,"completion_tokens":4,"total_tokens":27}}

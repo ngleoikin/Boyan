@@ -1,0 +1,10 @@
+
+# ignore embedded repos & vendors
+deepseek-ocr.rs/
+services/mcp/models/
+services/mcp/storage/
+services/mcp/.venv/
+.env
+*.onnx
+*.log
+__pycache__/

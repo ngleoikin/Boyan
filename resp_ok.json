@@ -1,0 +1,1 @@
+{"id":"resp-dc938e6d-f7da-4426-a94b-cf4349e7ade1","object":"response","created":1761894415,"model":"deepseek-ocr","output":[{"id":"msg-effc28e6-841a-4854-85a6-08dba43cb553","type":"message","role":"assistant","content":[{"type":"output_text","text":"【Boyan自检】小智AI OCR联调成功 @ 2025-10-"}]}],"usage":{"prompt_tokens":714,"completion_tokens":20,"total_tokens":734}}

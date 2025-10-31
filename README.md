@@ -211,6 +211,7 @@ Invoke-RestMethod http://127.0.0.1:8768/events/publish -Method POST -Body (@{top
 | 唤醒词误触发 | 增大 `WAKE_MIN_INTERVAL_SEC`，缩小关键词列表。 |
 | 提醒未触发 | 检查 `assist.db` 是否创建成功，并确认 APScheduler 正常运行。 |
 
+
 ## 10. 自动化自检脚本
 
 项目提供 `scripts/test_mcp_tools.py` 与 `scripts/run_tests.bat` 两个辅助脚本，用于快速验证记事/提醒等关键 REST 能力：
@@ -225,6 +226,7 @@ Invoke-RestMethod http://127.0.0.1:8768/events/publish -Method POST -Body (@{top
 > 如未实现状态/策略/播报类接口，脚本会自动标记为 SKIP，不影响主要流程。
 
 ## 11. 下一步
+
 
 - 若需与 LLM 对接，将上述 REST 封装为 MCP 工具 (`note.create`, `reminder.create` 等)，并在提示词中声明使用策略。
 - 如需远程报警，可订阅 `/reminder/fired`、`/guard` 相关事件并转发至企业 IM/短信。

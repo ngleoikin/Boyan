@@ -1,10 +1,22 @@
+# venv / IDE
+services/mcp/.venv/
+__pycache__/
+*.pyc
+.vscode/
+.idea/
 
-# ignore embedded repos & vendors
-deepseek-ocr.rs/
+# secrets
+.env
+
+# models / storage / logs
 services/mcp/models/
 services/mcp/storage/
-services/mcp/.venv/
-.env
 *.onnx
 *.log
-__pycache__/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# nested repos
+deepseek-ocr.rs/

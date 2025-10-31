@@ -13,6 +13,7 @@
 
 ---
 
+
 ## 1. 仓库结构（建议）
 
 ```
@@ -344,7 +345,7 @@ deepseek-ocr.rs/
 
 ```
 OPENAI_BASE=https://api.deepseek.com
-OPENAI_API_KEY=sk-933514f45ed44598a2468168e991dc89
+OPENAI_API_KEY=
 MODEL_ID=deepseek-chat
 ```
 

@@ -17,7 +17,7 @@ try:  # Optional dependency required for file uploads.
 except Exception:  # pragma: no cover - dependency optional
     _MULTIPART_AVAILABLE = False
 
-from common import config, db, llm, schemas, utils
+from common import config, db, schemas, utils
 
 LOGGER = logging.getLogger(__name__)
 
@@ -156,8 +156,30 @@ async def _call_ocr(image_b64: str, mime: str, prompt: str) -> tuple[str, Dict[s
         resp = await client.post(url, json=payload, headers=headers)
         resp.raise_for_status()
     data = resp.json()
-    text = llm.extract_first_text(data)
+    text = _extract_ocr_text(data)
     return text, data
+
+
+def _extract_ocr_text(payload: Dict[str, Any]) -> str:
+    candidates: List[str] = []
+
+    def _collect(value: Any) -> None:
+        if isinstance(value, str):
+            stripped = value.strip()
+            if stripped:
+                candidates.append(stripped)
+        elif isinstance(value, list):
+            for item in value:
+                _collect(item)
+        elif isinstance(value, dict):
+            for key in ("text", "output_text", "content"):
+                if key in value:
+                    _collect(value[key])
+
+    _collect(payload)
+    if candidates:
+        return candidates[0]
+    raise ValueError("无法从 OCR 响应中解析文本")
 
 
 async def _probe_ocr() -> bool:

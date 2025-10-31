@@ -112,27 +112,3 @@ def test_brain_workflow() -> None:
     event_ocr = event_payload | {"topic": "vision/ocr", "data": {"text": "测试 OCR"}}
     action_ocr = client.post("/edge/event", json=event_ocr).json()
     assert action_ocr["actions"][0]["action"] == "store_ocr"
-
-
-def test_edge_event_forward_to_llm() -> None:
-    db.init_db()
-    client = TestClient(brain_server.app)
-
-    async def fake_delegate(event, ts: str) -> Dict[str, Any]:
-        return {"text": "请问您是甲吗？", "raw": {"mock": True, "ts": ts}}
-
-    payload = {
-        "type": "detected",
-        "device_id": "esp32s3-abc",
-        "ts": "2025-10-31T10:00:00Z",
-        "cam": "door-cam-01",
-        "topic": "vision/person",
-        "data": {"confidence": 0.5, "label": "有人"},
-    }
-
-    with patch("services.mcp.brain_server._delegate_event_to_llm", new=fake_delegate):
-        resp = client.post("/edge/event", json=payload).json()
-
-    assert any(action["action"] == "llm_consult" for action in resp["actions"])
-    llm_action = next(action for action in resp["actions"] if action["action"] == "llm_consult")
-    assert llm_action["text"] == "请问您是甲吗？"

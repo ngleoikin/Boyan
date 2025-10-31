@@ -13,6 +13,7 @@
 
 ---
 
+
 ## 1. 仓库结构（建议）
 
 ```
@@ -336,7 +337,11 @@ deepseek-ocr.rs/
 * **`/edge/event` 返回 `skipped: true`**：规则未命中，请检查 `topic` 精确匹配和必填字段（`type/ts/cam`）。
 * **`/notes` 或 `/reminders` 500**：多为 DB 文件夹不存在或 `ASSIST_DB` 路径不可写；确保启动时初始化 DB（见 §4）。
 
----
+```
+OPENAI_BASE=https://api.deepseek.com
+OPENAI_API_KEY=sk-933514f45ed44598a2468168e991dc89
+MODEL_ID=deepseek-chat
+```
 
 ### DeepSeek 测试凭据（临时）
 
@@ -344,7 +349,7 @@ deepseek-ocr.rs/
 
 ```
 OPENAI_BASE=https://api.deepseek.com
-OPENAI_API_KEY=sk-933514f45ed44598a2468168e991dc89
+OPENAI_API_KEY=
 MODEL_ID=deepseek-chat
 ```
 
